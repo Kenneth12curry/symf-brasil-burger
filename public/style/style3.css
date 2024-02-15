@@ -1,0 +1,7 @@
+.mg{
+    margin-left: 30px;
+}
+
+.zoom-img:hover {
+    transform: scale(1.1);
+}

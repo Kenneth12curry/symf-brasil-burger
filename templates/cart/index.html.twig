@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content_for_layout %}
+
+<div class="container mt-5">
+
+    <div class="bg-light p-3">
+        <h4>Votre Panier</h4>
+    </div>
+
+    {% if items | length > 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{item.product.nom}}</td>
+                        <td>{{item.product.prix}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.product.prix * item.quantity}}</td>
+                        <td>
+                            <a href="{{ path('cart_add', {'id' : item.product.id }) }}" class="btn btn-success btn-sm">
+                                <i class="bi bi-cart-plus"></i>
+                            </a>
+                            <a href="{{ path('cart_remove', {'id' : item.product.id }) }}" class="btn btn-danger btn-sm">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" >Total :</td>
+                    <td>{{ total }}</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div>
+            <form action="{{path('app_commande_create')}}" method="POST">
+                <button name="btnSave"  value=" create " 
+                type="submit" class="btn btn-primary ml-2">Enregistrer</button>
+            </form>   
+        </div>
+
+    {% else %}
+        <p class="mt-2">Surprise, c'est vide !</p>
+    {% endif %}
+
+</div>
+
+
+{% endblock content_for_layout %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block content_for_layout %}
+
+<div class="row row-cols-1 row-cols-md-3 g-4 mt-5 ms-1"> 
+
+    {% for data in datas %}
+
+        <div class="col">
+          <div class="card ext-bg-warning bg-warning" style="width: 22rem;" >
+            <img src="{{asset('img/')}}{{data.image}}" width="10:rem" height= "240" class="card-img-top" alt="..." >
+            <div class="card-body ">
+              <div class="card-title">
+                <div class="border text-dark border-success rounded-3 p-1">{{data.nom}}</div>
+                <div class="border border-success rounded-3 mt-2 px-1 py-1 w-75"> <h6 class="text-dark">{{data.prix}} Franc CFA</h6></div>
+                <div class="border border-success rounded-3 mt-2 px-1 py-1 w-75"> <h6 class="text-dark">{{data.description}}</h6></div>
+              </div>
+                    <div class="row g-4">
+                        <div class="col-sm-1">
+                            <i class="bi bi-dash-circle"></i>
+                        </div>
+                        <div class="col-sm-1">
+                            <i class="bi bi-plus-circle"></i>
+                        </div>
+                        <div class="col-sm d-grid gap-2 d-md-flex h-100 justify-content-md-start">
+                          {% if user is defined and 'Client' in user.roles %}
+                            <a name="" id="" class="btn btn-primary fw-bold m-3" height="200px" href="{{ path('cart_add', {'id' : data.id }) }}"  role="button">Commander</a>
+                            <a name="" id="" class="btn btn-success fw-bold mt-3 w-50 h-50"  href="{{path('app_details_burger',{'idBurger':data.id})}}"  height="200px" role="button">Details</a>
+                          {% endif %}
+                          {% if user is defined and 'Gestionnaire' in user.roles %}
+                            <a name="" id="" class="btn btn-primary text-light m-3" height="200px" href="{{path('app_g_edit_burger',{'idBurger':data.id})}}" role="button">Modifier</a>
+                          {% endif %}
+                          <!--a name="" id="" class="btn btn-primary btn-xs  mt-3 w-50 h-50" height="200px" href="{{path('app_g_destroy_burger',{'idBurger':data.id})}}" role="button">Supprimer</a-->
+                        </div>                          
+                    </div>
+            </div>
+          </div>
+        </div>
+  
+    {% endfor %}
+
+</div>
+
+  
+{% endblock content_for_layout %}
+

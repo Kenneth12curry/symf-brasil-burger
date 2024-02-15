@@ -1,0 +1,4 @@
+#changer la page par défaut de symfony par la page home
+index:
+  path: /
+  controller: App\Controller\HomeController::index

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content_for_layout %}
+
+<div class="container mt-5">
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+          <img src="{{asset('img/')}}{{burger.image}}" width:"18rem" height= "250" class="card-img-top" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{burger.nom}}</h5>
+          <p class="card-text">{{burger.prix}} FCFA</p>
+           <div class="border rounded-3 bg-white shadow mt-2 px-1 py-1 w-75"> <h6>{{burger.description}}</h6></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+
+{% endblock content_for_layout %}

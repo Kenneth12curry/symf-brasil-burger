@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content_for_layout %}
+
+<div class="container mt-5">
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+          <img src="{{asset('img/')}}{{menu.image}}" width:"18rem" height= "250" class="card-img-top" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{menu.nom}}</h5>
+          <span class="card-text fw-bold">{{menu.prix}} FCFA</span>
+           <div class="border rounded-3 bg-white shadow mt-2 px-1 py-1 w-75"><h6>{{menu.description}}</h6></div>
+           <p class="card-text mt-1">{{menu.burger.nom}} FCFA</p>
+           <p class="card-text mt-1">{{menu.frite.nom}} FCFA</p>
+           <p class="card-text mt-1">{{menu.boisson.nom}} FCFA</p>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+</div>
+
+
+{% endblock content_for_layout %}

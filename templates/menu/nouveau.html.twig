@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block content_for_layout %}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light "></span>Création du Menu </h4>
+
+    <div class="row">
+      <!-- Form controls -->
+      <form class="form-inline" action="{{path('app_g_menu_create')}}" method="POST">
+
+         <!-- Création d'un champ input caché pour récupérer l'id du burger -->
+        <input type="hidden"  
+        name="id"    value="{% if menu is defined  %} {{menu.id}} {% else %} 0 {% endif %}" >
+
+        <div class="col-md-6 pd-3 w-100">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="mb-3">
+             
+                <label for="exampleFormControlInput1" class="form-label">Nom </label>
+                <input 
+                  class="form-control w-50"
+                  type="text"
+                  name="nomMenu"
+                  value="{% if menu is defined  %}{{menu.nom}}{% endif %}" 
+                  id="exampleFormControlInput1"
+                  placeholder="Nom"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlReadOnlyInput1" class="form-label">Prix</label>
+                <input
+                  class="form-control w-50"
+                  type="number"
+                  step="any"
+                  name="prixMenu"
+                  value="{% if menu is defined  %}{{menu.prix}}{% endif %}" 
+                  id="exampleFormControlReadOnlyInput1"
+                  placeholder="Prix"
+                />
+            </div>
+            <div class="mb-3">
+                  <label for="formFile" class="form-label">Image</label>
+                  <input class="form-control w-50"
+                   name="imgMenu" type="file" id="formFile" 
+                   value="{% if menu is defined  %}{{menu.image}}{% endif %}" 
+                   />
+            </div>
+            <div>
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control w-50" 
+                name="descrMenu" 
+                id="exampleFormControlTextarea1" 
+                value="{% if menu is defined  %}{{menu.description}}{% endif %}" 
+                rows="3"></textarea>
+            </div>
+            <div class="col-sm-10">
+                <label class="col-sm-2 col-form-label">Burger</label>
+                <select class="form-select w-50" name="MenuBurger" aria-label="Default select example">
+                    {%for burger in burgers %}
+                        <option value="{{burger.nom}}">{{burger.nom}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-10">
+                <label class="col-sm-2 col-form-label">Frite</label>
+                <select class="form-select w-50" name="MenuFrite" aria-label="Default select example">
+                    {%for frite in frites %}
+                        <option value="{{frite.nom}}">{{frite.nom}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-10">
+                <label class="col-sm-2 col-form-label">Boisson</label>
+                <select class="form-select w-50" name="MenuBoisson" aria-label="Default select example">
+                    {%for boisson in boissons %}
+                        <option value="{{boisson.nom}}">{{boisson.nom}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+              <div class="mt-4">
+                    <button name="btnSave"  value="{% if menu is defined  %} update {% else %} create {% endif %}" 
+                    type="submit" class="btn btn-primary ml-2">Enregistrer</button>
+              </div>
+                 
+              </div>
+            </div>
+          </div>
+      </div>
+   
+      </form>
+    
+    </div>
+   
+</div>
+
+{% endblock content_for_layout %}
+

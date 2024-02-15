@@ -1,0 +1,63 @@
+{% extends 'website/home/index.html.twig' %}
+
+{% block content %}
+     <!-- bradcam_area_start -->
+     <div class="bradcam_area breadcam_bg overlay">
+        <h3>Menu</h3>
+    </div>
+    <!-- bradcam_area_end -->
+{% endblock content %}
+
+
+
+{% block container %}
+            <div class="row mt-2">
+                <div class="col-lg-12">
+                    <div class="section_title text-center mb-80">
+                        <span>Burger Menu</span>
+                        <h3>Best Ever Burgers</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-5 mx-3"> 
+
+                {% for data in datas %}
+
+                    <div class="">
+                    <div class="w-75">
+                        <img src="{{asset('img/')}}{{data.image}}" width="300:rem;" height= "270" class="rounded-circle zoom-img" alt="..." >
+                        <div class="card-body ">
+                        <div class="card-title text-center">
+                            <div class="border rounded-3 p-1 text-dark fw-bold">{{data.nom}}</div>
+                            <div class="mg border rounded-3 mt-2 px-1  w-75"> <h6 class="text-dark fw-bold">{{data.prix}} Franc CFA</h6></div>
+                            <div class="mg border rounded-3 mt-2 px-1  w-75"> <h6 class="text-dark fw-bold">{{data.description}}</h6></div>
+                        </div>
+                                <div class="row g-4">
+                                    <div class="col-sm-1">
+                                        <i class="bi bi-dash-circle"></i>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <i class="bi bi-plus-circle"></i>
+                                    </div>
+                                    <div class="col-sm d-grid gap-2 d-md-flex h-100 justify-content-md-start">
+                                        <a class="boxed-btn3 m-3" height="200px" href="{{path('app_login')}}"  role="button">Commander</a>
+                                    </div>                          
+                                </div>
+                        </div>
+                    </div>
+                    </div>
+            
+                {% endfor %}
+            </div>
+               
+    {% endblock container %}
+
+    
+{% block content_for_layout %}
+
+{% endblock content_for_layout %}
+
+{% block non_retour %}
+
+{% endblock non_retour %}

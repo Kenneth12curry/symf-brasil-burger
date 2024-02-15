@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+
+{% block container %}
+    <!-- Tables -->
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-header small text-uppercase">
+          <span class="menu-header-text fw-bolder">Admin</span>
+        </li>
+        <!-- Layouts -->
+        <li class="menu-item active open">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-layout"></i>
+            <div data-i18n="Layouts">Utilisateurs</div>
+          </a>
+
+          <ul class="menu-sub">
+            <li class="menu-item">
+              <a href="{{path('app_admin')}}" class="menu-link">
+                <div data-i18n="Without menu">Liste</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="" class="menu-link">
+                <div data-i18n="Without navbar">Nouveau</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!---li class="menu-header small text-uppercase">
+          <span class="menu-header-text">Pages</span>
+        </li>
+        <li class="menu-item">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+            <div data-i18n="Account Settings">Menus</div>
+          </a>
+          <ul class="menu-sub">
+            <li class="menu-item">
+              <a href="{{path('app_g_menu')}}" class="menu-link">
+                <div data-i18n="Account">Liste </div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a  href="{{path('app_g_menu_create')}}"class="menu-link">
+                <div data-i18n="Notifications">Nouveau</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="menu-item">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-cube-alt"></i>
+            <div data-i18n="Misc">Commmandes</div>
+          </a>
+          <ul class="menu-sub">
+            <li class="menu-item">
+              <a  href="{{path('app_g_commande')}}" class="menu-link">
+                <div data-i18n="Error">Liste</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="menu-item">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-cube-alt"></i>
+            <div data-i18n="Misc">Compléments</div>
+          </a>
+          <ul class="menu-sub">
+            <li class="menu-item">
+              <a  href="{{path('app_g_frite')}}" class="menu-link">
+                <div data-i18n="Error">Frites</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="{{path('app_g_boisson')}}" class="menu-link">
+                <div data-i18n="Error">Boissons</div>
+              </a>
+            </li>
+          </ul>
+        </li-->
+        <!-- Components -->
+      
+        <!-- Cards -->
+        
+        <!-- User interface -->
+        
+        <!-- Extended components -->
+
+        <!-- Forms & Tables -->
+        
+        <!-- Forms -->
+      
+        <!-- Tables -->
+        <li class="menu-item">
+          <a href="tables-basic.html" class="menu-link">
+            
+          </a>
+        </li>
+        
+        
+        <!-- Misc -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Logout</span>
+        </li>
+
+        {% block deconnexion %}
+        <li class="menu-item">
+          <a  href="{{path('app_logout')}}" class="menu-link text-danger">
+            <div data-i18n="Error">Déconnexion</div>
+          </a>
+        </li>
+        {% endblock %}
+
+        <!--li class="menu-item">
+          <a
+            href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+            target="_blank"
+            class="menu-link"
+          >
+           
+          </a>
+        </li-->
+    </ul>
+{% endblock %}
+
+{% block content_for_layout %}
+     <!-- Bootstrap Dark Table -->
+     <div class="container">
+        <div class="card mt-5">
+            <h5 class="card-header">Listes des Utilisateurs</h5>
+            <div class="table-responsive text-nowrap">
+              <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th>Login</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                {% for data in datas %}
+                  <tr>
+                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{data.login}}</strong></td>
+                    <td>{{data.nom}}</td>
+                    <td><span class="badge bg-label-primary me-1">{{data.prenom}}</span></td>
+                    <td>{{data.roles | join(', ') }}</td>
+                    <td>
+                        <a href="{{path('app_destroy_user',{'idUser':data.id})}}"  class="btn btn-warning">supprimer</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+     </div>
+     
+      <!--/ Bootstrap Dark Table -->
+{% endblock %}
+
+

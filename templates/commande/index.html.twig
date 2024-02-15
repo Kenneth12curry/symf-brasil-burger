@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content_for_layout %}
+    <!-- Page Heading -->
+        <h4 class="fw-bold mb-2 mt-5 ms-4">Gestion des Commmandes</h4>
+        <!-- DataTales Example -->
+        <div class="container">
+            <div class="card shadow mb-4 mt-3">
+                <div class="row my-4 ml-4">
+                    <!-- Création d'un formulaire pour rechercher un compte râce à bootstrap b4-form-inline -->
+                    <form class="form-inline" action="{{path('app_g_commande')}}" method="POST">
+                        <div class="form-group m-2 d-flex flex-row">
+                            <label for="" class="mx-3 p-2">Téléphone</label>
+                            <input type="text" name="tel" id="" 
+                            value="{{tel}}" 
+                            class="form-control mr-3 w-25"  placeholder="" aria-describedby="helpId">
+                            <div class="m-1">
+                                <button type="submit" class="btn btn-primary ms-2">Search</button>
+                            </div>
+                            <label for="" class="mx-3 p-2">Date</label>
+                            <input type="date" name="date" id="" 
+                            value="{{date}}" 
+                            class="form-control mr-3 w-25"  placeholder="" aria-describedby="helpId">
+                            <div class="m-1">
+                                <button type="submit" class="btn btn-primary ms-2">Search</button>
+                            </div>
+                            <label for="" class="mx-3 p-2">Etat</label>
+                            <select  name="etat"class="form-control mr-3 w-25">
+                                <option></option>
+                                <option>En cours</option>
+                                <option>Terminer</option>
+                                <option>Annuler</option>
+                            </select>
+                            <div class="m-1">
+                                <button type="submit" class="btn btn-primary ms-2">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!---->
+                </div>
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Listes des Commandes</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Prénom</th>
+                                    <th>Nom</th>
+                                    <th>Téléphone</th>
+                                    <th>Numéro</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Etat</th>  
+                                    <th>Actions</th>   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for data in datas %}
+                                    <tr>
+                                        <td>{{data.client.prenom}}</td>
+                                        <td>{{data.client.nom}}</td>
+                                        <td>{{data.client.tel}}</td>
+                                        <td>{{data.numero}}</td>
+                                        <td>{{data.date}}</td>
+                                        <td>{{data.montant}}</td>
+                                        <td>{{data.etat}}</td>
+                                        <td>
+                                            <a name="" id="" class="btn btn-success btn-xs fw-bold" href="{{path('app_g_edit_commande',{'idCm':data.id})}}" role="button">Modifier</a>
+                                            <a name="" id="" class="btn btn-danger btn-xs fw-bold" href="{{path('app_g_update_commande',{'idCm':data.id})}}" role="button">Annuler</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    <!-- end Page Heading-->
+
+{% endblock  content_for_layout %}

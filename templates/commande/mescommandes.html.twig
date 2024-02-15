@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content_for_layout %}
+        <!-- DataTales Example -->
+        <div class="container">
+            <div class="card shadow mb-4 mt-3">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Listes des Commandes</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Numéro</th>
+                                    <th>Date</th>
+                                    <th>Montant</th>
+                                    <th>Etat</th>  
+                                    <th>Actions</th>   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for data in datas %}
+                                    <tr>
+                                        <td>{{data.numero}}</td>
+                                        <td>{{data.date}}</td>
+                                        <td>{{data.montant}}</td>
+                                        <td>{{data.etat}}</td>
+                                        <td>
+                                            <a name="" id="" class="btn btn-success btn-xs fw-bold" href="{{path('app_g_edit_commande',{'idCm':data.id})}}" role="button">Modifier</a>
+                                            <a name="" id="" class="btn btn-danger btn-xs fw-bold" href="{{path('app_g_update_commande',{'idCm':data.id})}}" role="button">Annuler</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    <!-- end Page Heading-->
+
+{% endblock  content_for_layout %}

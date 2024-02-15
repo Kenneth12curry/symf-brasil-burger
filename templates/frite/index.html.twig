@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content_for_layout %}
+<div class="container">
+    {% if user is defined and 'Gestionnaire' in user.roles %}
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800 mt-3 ml-5 text-center">Gestion des Frites</h1>
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4 d-flex flex-row mt-3">
+            <div class="row my-4 ml-4">
+                <!-- Création d'un formulaire pour ajouter(créer) une agence râce à bootstrap b4-form-inline -->
+                <form class="form-inline  d-flex flex-row" action="{{path('app_g_frite_create')}}" method="POST">
+                    
+                    <!-- Création d'un champ input caché pour récupérer l'id de l'agence -->
+
+                    <input type="hidden"  
+                    name="id"    value="{% if frite is defined  %} {{frite.id}} {% else %} 0 {% endif %}" >
+
+                    <div class="form-group  d-flex flex-row">
+
+                        <label for="" class="mx-3 p-2">Nom</label>
+
+                        <input type="text" name="nomFrite" id="" 
+
+                        value="{% if frite is defined  %}{{frite.nom}}{% endif %}" 
+
+                        class="form-control" placeholder="" aria-describedby="helpId">
+
+                    </div>
+                    <div class="form-group  d-flex flex-row">
+
+                        <label for="" class="mx-3 p-2">Prix</label>
+
+                        <input type="number" name="prixFrite" id="" 
+
+                        value="{% if frite is defined  %}{{frite.prix}}{% endif %}" 
+
+                        class="form-control mr-3" placeholder="" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group  d-flex flex-row">
+
+                        <label for="formFile" class="form-label p-2">Image</label>
+                        <input class="form-control w-75"
+                        name="imgFrite" type="file" id="formFile" 
+                        value="{% if frite is defined  %} {{frite.image}} {% endif %}" 
+                        />
+                    </div>
+                    <button name="btnSave"  value="{% if frite is defined  %} update {% else %} create {% endif %}" type="submit" class="btn btn-primary ml-2">Enregistrer</button>
+                </form>
+                <!---->
+            </div>
+        </div>
+    {% endif %}
+    <!--Listes des frites-->
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-5"> 
+
+        {% for data in datas %}
+
+            <div class="col">
+            <div class="card bg-warning ext-bg-warning" style="width: 20rem;">
+                <img src="{{asset('img/')}}{{data.image}}" width="10:rem" height= "200" class="card-img-top" alt="...">
+                <div class="card-body ">
+                <div class="card-title">
+                    <div class="border text-dark border-success rounded-3 p-1">{{data.nom}}</div>
+                    <div class="border border-success rounded-3 mt-2 px-1 py-1 w-75"> <h6 class="text-dark">{{data.prix}} Franc CFA</h6></div>
+                </div>
+                    <div class="row g-4">
+                        <div class="col-sm d-grid gap-2 d-md-flex justify-content-md-center">
+                        {% if user is defined and 'Client' in user.roles %}
+                            <a name="" id="" class="btn btn-primary m-3" height="200px" href="{{ path('cart_add', {'id' : data.id }) }}"  role="button">Ajouter</a>
+                        {% endif %}
+                        {% if user is defined and 'Gestionnaire' in user.roles %}
+                            <a name="" id=""  class="btn btn-primary" href="{{path('app_g_edit_frite',{'idfrite':data.id})}}" role="button">Modifier</a>
+                        {% endif %}
+                        <!--a name="" id="" class="btn btn-primary btn-xs text-light" height="200px" href="{{path('app_g_destroy_frite',{'idfrite':data.id})}}"role="button">supprimer</a-->
+                        </div>                          
+                    </div>
+                </div>
+            </div>
+            </div>
+    
+        {% endfor %}
+    </div>
+
+</div>
+     
+
+{% endblock  content_for_layout %}
